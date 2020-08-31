@@ -32,3 +32,49 @@ const slide = async (event) => {
 };
 
 window.addEventListener('wheel', () => slide(event), { passive: false });
+
+const fullDocumentHeight = window.innerHeight * slides.length;
+
+const scrollProgressBar = document.querySelector('progress#scroll-progress');
+
+window.addEventListener(
+  'scroll',
+  () => {
+    const scrollPosition = window.scrollY;
+
+    const scrollPercent = (
+      (scrollPosition / (fullDocumentHeight - window.innerHeight)) *
+      100
+    ).toFixed(2);
+
+    scrollProgressBar.value = scrollPercent;
+
+    scrollProgressBar.textContent = scrollPercent;
+  }
+  // ,{ passive: false }
+);
+
+const bubblesContainer = document.querySelector('#bubbles');
+
+const numberOfSeparators = 2;
+
+slides.forEach((page) => {
+  const pill = document.createElement('div');
+  pill.innerText = page.innerText;
+  pill.className = 'pill' + '-' + page.innerText;
+
+  bubblesContainer.appendChild(pill);
+
+  if ([...slides].indexOf(page) !== slides.length - 1) {
+    let separator = 1;
+
+    while (separator <= numberOfSeparators) {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + '-' + separator;
+
+      bubblesContainer.appendChild(dot);
+
+      separator++;
+    }
+  }
+});

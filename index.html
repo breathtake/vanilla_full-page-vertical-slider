@@ -7,12 +7,19 @@
     <title>Document</title>
   </head>
   <body>
-    <div>
-      <div class="page first">Page 1</div>
-      <div class="page second">Page 2</div>
-      <div class="page third">Page 3</div>
-    </div>
+    <div id="container">
+      <div id="navigation">
+        <!-- <label for="file">File progress:</label> -->
+        <progress id="scroll-progress" max="100" value="0">0%</progress>
 
+        <div id="bubbles"></div>
+      </div>
+      <div id="pages">
+        <div class="page first">Page 1</div>
+        <div class="page second">Page 2</div>
+        <div class="page third">Page 3</div>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
