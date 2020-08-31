@@ -2,19 +2,25 @@ let throttleTimer = Date.now();
 const throttleDelay = 500;
 
 const slider = (checkpoints) => {
+  const bubbles = [...document.querySelector('#bubbles').children];
   let currentSlideIndex = 0;
 
   const slide = (event) => {
     event.preventDefault();
 
-    const newSlide =
+    const newSlideIndex =
       event.deltaY > 0
-        ? checkpoints[currentSlideIndex + 1] //  slide down
-        : checkpoints[currentSlideIndex - 1]; // slide up
+        ? currentSlideIndex + 1 //  slide down
+        : currentSlideIndex - 1; // slide up
+
+    const newSlide = checkpoints[newSlideIndex];
 
     if (![...checkpoints].includes(newSlide)) {
       return; // if the slide is not exist
     }
+
+    bubbles[currentSlideIndex].classList.remove('active');
+    bubbles[newSlideIndex].classList.add('active');
 
     // throttled scroll
     if (throttleTimer + throttleDelay - Date.now() < 0) {

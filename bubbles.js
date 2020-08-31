@@ -10,6 +10,8 @@ const drawPill = (page) => {
   bubblesContainer.appendChild(pill);
 };
 
+let separatorIndex = 0;
+
 const drawSeparattors = (page) => {
   // dont draw after last pill
   if ([...slides].indexOf(page) !== slides.length - 1) {
@@ -17,11 +19,12 @@ const drawSeparattors = (page) => {
 
     while (separator <= numberOfSeparators) {
       const dot = document.createElement('div');
-      dot.className = 'dot' + '-' + separator;
+      dot.className = 'dot' + '-' + separatorIndex;
 
       bubblesContainer.appendChild(dot);
 
       separator++;
+      separatorIndex++;
     }
   }
 };
@@ -31,4 +34,6 @@ const drawBubbles = (slides) => {
     drawPill(page);
     drawSeparattors(page);
   });
+
+  bubblesContainer.children[0].classList.add('active');
 };

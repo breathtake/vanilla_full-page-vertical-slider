@@ -1,5 +1,7 @@
 const slides = document.querySelectorAll('.page');
 
+drawBubbles(slides);
+
 let checkpoints = [];
 
 [...slides].forEach((slide) => {
@@ -11,5 +13,4 @@ let checkpoints = [];
 });
 
 slider(checkpoints);
-drawBubbles(slides);
 controlScrollProgressBar(slides);
